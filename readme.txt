@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: juliobox, GregLone
+Contributors: juliobox
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KJGT942XKWJ6W
 Tags: role, member, user, moderator, comment, comments, capability
 Requires at least: 3.0
