@@ -3,7 +3,7 @@
 Plugin Name: BAW Moderator Role
 Plugin URI: http://www.boiteaweb.fr/modorole
 Description: Creates a new user "Moderator" role who can moderate comments only
-Version: 1.1
+Version: 1.2
 Author: Juliobox
 Author URI: http://www.boiteaweb.fr
 */
@@ -16,13 +16,15 @@ function bawmro_redirect_users()
 	// If the user id a Moderator, if not, let's continue
 	if ( current_user_can( 'moderator' ) ) {
 		global $menu; 
-		// Keep only these 2 menus, a filter is used if a plugin adds its how menu relating to comments.
-		$menu_ok = apply_filters( 'allowed_moderator_menus', array( __('Comments'), __('Profile') ) );
-		foreach( $menu as $menu_key => $menu_val ) {
-			$menu_value = explode( ' ',$menu[$menu_key][0] );
-			if( !in_array( $menu_value[0] != NULL ? $menu_value[0] : '', $menu_ok ) !== false ){
-				// Delete all others menus entries
-				unset( $menu[$menu_key] );
+		if( $menu ) {
+			// Keep only these 2 menus, a filter is used if a plugin adds its how menu relating to comments.
+			$menu_ok = apply_filters( 'allowed_moderator_menus', array( __('Comments'), __('Profile') ) );
+			foreach( $menu as $menu_key => $menu_val ) {
+				$menu_value = explode( ' ',$menu[$menu_key][0] );
+				if( !in_array( $menu_value[0] != NULL ? $menu_value[0] : '', $menu_ok ) !== false ){
+					// Delete all others menus entries
+					unset( $menu[$menu_key] );
+				}
 			}
 		}
 		// Is the user is trying to access to a forbidden page, redirect him on his job : moderate comment !
@@ -63,7 +65,7 @@ add_action( 'admin_init', 'bawmro_add_role' );
 function bawmro_map_meta_cap( $caps, $cap, $user_id, $args )
 {
 	// Force comments to be autorized for moderation for "moderator" role
-	if( $cap == 'edit_comment' && $caps && current_user_can( 'moderator' ) )
+	if( apply_filters( 'allow_moderate_all_comments', true ) && $cap == 'edit_comment' && $caps && current_user_can( 'moderator' ) )
 		return null;
 	return $caps;
 }
