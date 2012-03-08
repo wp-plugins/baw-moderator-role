@@ -24,7 +24,7 @@ Just install the plugin, activate it: You can now change a user's role to "Moder
 = I just want my moderators can moderate their own comments, is this possible? =
 
 Yes, you can play with my filter named "allow_moderate_all_comments", example of use (add this in your functions.php from theme folder):
-1. `add_filter( 'allow_moderate_all_comments', '__return_false' ); // This will remove the "all comments" moderation`
+1. Code: `add_filter( 'allow_moderate_all_comments', '__return_false' ); // This will remove the "all comments" moderation`
 1. or we can check a user meta to allow one user to be kind of "admin moderator", example with a moderator user, with ID 123
 `function check_moderator()
 {
