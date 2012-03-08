@@ -57,6 +57,12 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 
 == Changelog ==
 
+= 1.2 =
+* 07 mar 2012
+* Bug fix when updating a comment with ajax (quick edit)
+* Add a new hook (See FAQ)
+* Readme improved (so, read him)
+
 = 1.1 =
 * 07 mar 2012
 * First release
