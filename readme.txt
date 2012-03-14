@@ -57,6 +57,11 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 
 == Changelog ==
 
+= 1.3 =
+* 14 mar 2012
+* Bug fix when updating a comment with ajax (quick edit) (again) thanks to @lpointet pointing me that
+* Bug fix when quick-replying a comment with ajax thanks to @lpointet pointing me that too
+
 = 1.2 =
 * 07 mar 2012
 * Bug fix when updating a comment with ajax (quick edit)
