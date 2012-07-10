@@ -3,7 +3,7 @@ Contributors: juliobox
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KJGT942XKWJ6W
 Tags: role, member, user, moderator, comment, comments, capability
 Requires at least: 3.0
-Tested up to: 3.3.1
+Tested up to: 3.4.1
 Stable tag: trunk
 
 Add a real Comments Moderator Role to your powerful WordPress Blog!
@@ -17,6 +17,7 @@ Just install the plugin, activate it: You can now change a user's role to "Moder
 1. Upload the *"baw-moderator-role"* folder into the *"/wp-content/plugins/"* directory
 1. Activate the plugin through the *"Plugins"* menu in WordPress
 1. You can now change a user's role to "Moderator", he can now moderate comments (all or only his see FAQ), and only do this!
+1. All moderators will receive an email when a non approved comment is awaiting moderation.
 1. See FAQ for filters/actions usage
 
 == Frequently Asked Questions ==
@@ -56,6 +57,10 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 1. The new little menu
 
 == Changelog ==
+
+= 1.4 =
+* 11 jul 2012
+* Add the pluggable function wp_notify_moderator() to add a filter on $email_to, this filter is now used to add all moderators.
 
 = 1.3 =
 * 14 mar 2012
