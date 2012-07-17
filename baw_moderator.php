@@ -3,7 +3,7 @@
 Plugin Name: BAW Moderator Role
 Plugin URI: http://www.boiteaweb.fr/modorole
 Description: Creates a new user "Moderator" role who can moderate comments only
-Version: 1.4
+Version: 1.4.1
 Author: Juliobox
 Author URI: http://www.boiteaweb.fr
 */
@@ -112,7 +112,6 @@ function wp_notify_moderator($comment_id) {
 	$user = get_userdata( $post->post_author );
 	// Send to the administration and to the post author if the author can modify the comment.
 	$email_to = apply_filters( 'notify_moderator_email_to', array( get_option('admin_email') ) ); // MRO adds ths filter
-	wp_die(var_dump($email_to));
 	if ( user_can($user->ID, 'edit_comment', $comment_id) && !empty($user->user_email) && ( get_option('admin_email') != $user->user_email) )
 		$email_to[] = $user->user_email;
 

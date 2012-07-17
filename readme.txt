@@ -58,6 +58,10 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 
 == Changelog ==
 
+= 1.4.1 =
+* 17 jul 2012
+* Bug fix
+
 = 1.4 =
 * 11 jul 2012
 * Add the pluggable function wp_notify_moderator() to add a filter on $email_to, this filter is now used to add all moderators.
