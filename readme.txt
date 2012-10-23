@@ -58,6 +58,10 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 
 == Changelog ==
 
+= 1.4.2 =
+* 23 oct 2012
+* Security fix: User can not edit posts anymore, thanks to Antoine Peytavin pointing me this
+
 = 1.4.1 =
 * 17 jul 2012
 * Bug fix

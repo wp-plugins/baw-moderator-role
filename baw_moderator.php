@@ -3,7 +3,7 @@
 Plugin Name: BAW Moderator Role
 Plugin URI: http://www.boiteaweb.fr/modorole
 Description: Creates a new user "Moderator" role who can moderate comments only
-Version: 1.4.1
+Version: 1.4.2
 Author: Juliobox
 Author URI: http://www.boiteaweb.fr
 */
@@ -12,7 +12,7 @@ function bawmro_redirect_users()
 {
 	global $pagenow;
 	// Pages forbidden by the plugin but autorized by WordPress
-	$pagesnow = array( 'index.php', 'post-new.php', 'edit.php', 'edit-tags.php', 'tools.php' );
+	$pagesnow = array( 'edit-comments.php', 'comment.php', 'profile.php', 'admin-ajax.php' );
 	// If the user id a Moderator, if not, let's continue
 	if ( current_user_can( 'moderator' ) && $pagenow ) {
 		global $menu; 
@@ -28,7 +28,7 @@ function bawmro_redirect_users()
 			}
 		}
 		// Is the user is trying to access to a forbidden page, redirect him on his job : moderate comment !
-		if ( in_array( $pagenow, $pagesnow ) )
+		if ( !in_array( $pagenow, $pagesnow ) )
 			wp_redirect( admin_url( 'edit-comments.php' ) );
 	}
 }
