@@ -68,7 +68,7 @@ function bawmro_map_meta_cap( $caps, $cap, $user_id, $args )
 {
 	// Force comments to be autorized for moderation for "moderator" role
 	if ( apply_filters( 'allow_moderate_all_comments', true ) && in_array( $cap, array( 'edit_comment', 'edit_post' ) ) && $caps && current_user_can( 'moderator' ) ) {
-		return null;
+		return array();
 	}
 	return $caps;
 }
