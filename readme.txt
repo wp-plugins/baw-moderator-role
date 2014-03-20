@@ -2,8 +2,8 @@
 Contributors: juliobox
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KJGT942XKWJ6W
 Tags: role, member, user, moderator, comment, comments, capability
-Requires at least: 3.0
-Tested up to: 3.4.1
+Requires at least: 3.1
+Tested up to: 3.9
 Stable tag: trunk
 
 Add a real Comments Moderator Role to your powerful WordPress Blog!
@@ -58,13 +58,19 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 
 == Changelog ==
 
+= 1.5 =
+* 20 mar 2014
+* Security fix: a die() was missing after the wp_redirect()
+* Fix : Fatal error -> change a do_action + &$var for an apply_filters
+* WordPress Coding Standard respect
+
 = 1.4.2 =
 * 23 oct 2012
 * Security fix: User can not edit posts anymore, thanks to Antoine Peytavin pointing me this
 
 = 1.4.1 =
 * 17 jul 2012
-* Bug fix
+* Bug fix (forgot which one)
 
 = 1.4 =
 * 11 jul 2012
