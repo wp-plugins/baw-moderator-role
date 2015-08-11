@@ -3,9 +3,9 @@
 Plugin Name: BAW Moderator Role
 Plugin URI: http://boiteaweb.fr/plugin-moderator-role-3331.html
 Description: Creates a new user "Moderator" role who can moderate comments only
-Version: 1.5
+Version: 1.6
 Author: Juliobox
-Author URI: http://www.boiteaweb.fr
+Author URI: http://wp-rocket.me
 */
 
 add_action( 'admin_init', 'bawmro_redirect_users' );
@@ -16,7 +16,7 @@ function bawmro_redirect_users() {
 	// If the user id a Moderator, if not, let's continue
 	if ( current_user_can( 'moderator' ) && $pagenow ) {
 		global $menu; 
-		if( $menu ) {
+		if ( $menu ) {
 			// Keep only these 2 menus, a filter is used if a plugin adds its own menu relating to comments.
 			$menu_ok = apply_filters( 'allowed_moderator_menus', array( __( 'Comments' ), __( 'Profile' ) ) );
 			foreach ( $menu as $menu_key => $menu_val ) {
@@ -35,8 +35,8 @@ function bawmro_redirect_users() {
 	}
 }
 
-add_action( 'admin_init', 'bawmro_add_role' );
-function bawmro_add_role()  {
+register_activation_hook( __FILE__, 'bawmro_add_role' );
+function bawmro_add_role() {
 	// The new role.
 	add_role(
 		'moderator',
@@ -46,7 +46,7 @@ function bawmro_add_role()  {
 			'edit_posts' => true,
 			'edit_other_posts' => true,
 			'edit_published_posts' => true,
-			'moderate_comments' => true
+			'moderate_comments' => true,
 		)
 	);
 }
@@ -64,8 +64,7 @@ function bawmro_edit_admin_bar()
 }
 
 add_filter('map_meta_cap', 'bawmro_map_meta_cap', 10, 4 );
-function bawmro_map_meta_cap( $caps, $cap, $user_id, $args )
-{
+function bawmro_map_meta_cap( $caps, $cap, $user_id, $args ) {
 	// Force comments to be autorized for moderation for "moderator" role
 	if ( apply_filters( 'allow_moderate_all_comments', true ) && in_array( $cap, array( 'edit_comment', 'edit_post' ) ) && $caps && current_user_can( 'moderator' ) ) {
 		return array();
@@ -74,8 +73,7 @@ function bawmro_map_meta_cap( $caps, $cap, $user_id, $args )
 }
 
 register_deactivation_hook( __FILE__, 'bawmro_deactivation' );
-function bawmro_deactivation()
-{
+function bawmro_deactivation() {
 	$users = get_users( array( 'role' => 'moderator' ) );
 	// If at least 1 user got the Moderator role, do not deactivate the plugin, you have to change all Moderators role before.
 	if ( ! count( $users ) ) {
@@ -92,8 +90,7 @@ function bawmro_deactivation()
 }
 
 add_filter( 'notify_moderator_email_to', 'bawmro_notify_moderator_email_to' );
-function bawmro_notify_moderator_email_to( $email_to )
-{
+function bawmro_notify_moderator_email_to( $email_to ) {
 	$modos = get_users( array( 'role' => 'moderator', 'fields' => array( 'user_email' ) ) );
 	foreach ( $modos as $k => $modo ) {
 		$modos[ $k ] = $modo->user_email;
@@ -154,10 +151,11 @@ function wp_notify_moderator( $comment_id ) {
 	}
 
 	$notify_message .= sprintf( __( 'Approve it: %s' ),  admin_url( "comment.php?action=approve&c=$comment_id" ) ) . "\r\n";
-	if ( EMPTY_TRASH_DAYS )
+	if ( EMPTY_TRASH_DAYS ) {
 		$notify_message .= sprintf( __( 'Trash it: %s' ), admin_url( "comment.php?action=trash&c=$comment_id" ) ) . "\r\n";
-	else
+	} else {
 		$notify_message .= sprintf( __( 'Delete it: %s' ), admin_url( "comment.php?action=delete&c=$comment_id" ) ) . "\r\n";
+	}
 	$notify_message .= sprintf( __( 'Spam it: %s' ), admin_url( "comment.php?action=spam&c=$comment_id" ) ) . "\r\n";
 
 	$notify_message .= sprintf( _n( 'Currently %s comment is waiting for approval. Please visit the moderation panel:',

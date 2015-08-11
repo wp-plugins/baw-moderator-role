@@ -3,7 +3,7 @@ Contributors: juliobox
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KJGT942XKWJ6W
 Tags: role, member, user, moderator, comment, comments, capability
 Requires at least: 3.1
-Tested up to: 3.9
+Tested up to: 4.3
 Stable tag: trunk
 
 Add a real Comments Moderator Role to your powerful WordPress Blog!
@@ -57,6 +57,10 @@ add_action( 'baw_before_admin_bar_render', 'remove_my_plugin_in_admin_bar' );`
 1. The new little menu
 
 == Changelog ==
+
+= 1.6 =
+* 11 aug 2015
+* 4.3 support
 
 = 1.5 =
 * 20 mar 2014
